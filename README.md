@@ -1,25 +1,27 @@
-# RNN subject-verb agreement
+# RNNs on Cognitive Modelling (Subject-Verb Number Agreement)
 
-Code for the paper [Assessing the ability of LSTMs to learn syntax-sensitive
-dependencies](https://transacl.org/ojs/index.php/tacl/article/view/972).
+Code for the Master's Thesis [Recurrent Neural Networks for Cognitive Modelling]
+The study is to find recurrent networks with architectures that are biologically
+plausible and have performance similar to humans. (LSTMs have the best performance
+similarity but are bad models of the brain architecturally).
+In the process we also find significant surprsing observations about the performance
+of RNNs on certain tasks with changing difficulty and interesting insights into 
+vanishing and exploding gradients which needs to be futher looked into.
+
 Dependencies:
 
 * numpy
-* keras
-* theano (though the TensorFlow backend is likely to also work)
+* pytorch
+* inflect
 * pandas
 
-For the Google LM evaluation, you would need to install TensorFlow and download
-[the trained model](https://github.com/tensorflow/models/tree/master/lm_1b).
-
-If you're just looking for the subject-verb dependency data in a simple format
-and are not planning to run the code in this repository,
-download our [simple dependency
-dataset](http://tallinzen.net/media/rnn_agreement/rnn_agr_simple.tar.gz).
+Suggested : Intall Anaconda (python library manager). Then install inflect, pytorch
+and any other libraries as needed.
 
 ## Quick start
 
-Follow this section if you'd like to run the code on the same set of dependencies we used in the paper.
+Follow this section if you'd like to run the code on the same set of dependencies used by in the thesis
+which is the same as used by Linzen in his paper [Assesing the ability of LSTMs to learn syntax-senstive dependcies].
 
 All of the functions should accept all relevant filenames as arguments, but in
 general the easiest thing to do is to set the environment variable
@@ -40,21 +42,9 @@ pvn.pipeline()
 After running this code, `pvn.test_results` will be a pandas data frame
 with all of the relevant results.
 
-The file `experiments.py` contains the code used to run the experiments
-reported in the paper; see that file for examples of tasks and training
-regimes other than `PredictVerbNumber`.
+Functions to run experiments other than Number Prediction (PredictVerbNumber) 
+can be found in the agreement_acceptor.py file in source. 
+There is a sample run_plus.py file provided for running the Plus 10 task.
 
-## More
-
-If you'd like to regenerate the set of dependencies from the corpus (and
-perhaps modify our criteria), download the [subset of the parsed Wikipedia
-corpus](http://tallinzen.net/media/rnn_agreement/wikipedia.parsed.subset.50.gz) we used (1.7 GB).
-
-```python
-from rnnagr.collect_agreement import CollectAgreement
-from rnnagr.utils import deps_to_csv
-import filenames
-ca = CollectAgreement(filenames.parsed_wiki_subset_50, modes=('infreq_pos',),
-skip=0, most_common=10000)
-ca.collect_agreement()
-deps_to_tsv(ca.deps, 'agr_mostcommon_10K.tsv')
+To change the model you are running, change the import file name in agreement_acceptor file.
+Each model class is named LSTM inside different files to support one change run.
