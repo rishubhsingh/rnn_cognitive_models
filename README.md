@@ -14,8 +14,9 @@ Dependencies:
 * pytorch
 * inflect
 * pandas
+* statsmodels
 
-Suggested : Intall Anaconda (python library manager). Then install inflect, pytorch
+Suggested : Install Anaconda (python library manager). Then install inflect, pytorch
 and any other libraries as needed.
 
 ## Quick start
@@ -44,6 +45,7 @@ with all of the relevant results.
 
 Functions to run experiments other than Number Prediction (PredictVerbNumber) 
 can be found in the agreement_acceptor.py file in source. 
+- Create a "logs" and "models" folder inside the src directory
 There is a sample run_plus.py file provided for running the Plus 10 task.
 
 To change the model you are running, change the import file name in agreement_acceptor file.
