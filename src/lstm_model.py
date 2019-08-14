@@ -88,7 +88,7 @@ class LSTMModel(object):
         if (test_size == -2):
             acctrain = self.results_train()
 
-    def load_examples(self, save_data=False, n_examples=None):
+    def load_examples(self,data_name='Not',save_data=False, n_examples=None):
         '''
         Set n_examples to some positive integer to only load (up to) that 
         number of examples
